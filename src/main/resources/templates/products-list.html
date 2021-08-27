@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All products</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container mt-5">
+    <h1>List of all products</h1>
+    <div th:each="pr : ${products}" class="alert alert-info mt-2">
+        <h3 th:text="${pr.getProductName()}"></h3>
+        <p th:text="${pr.getProductDescription()}"></p>
+        <p th:text="${pr.getProductPrice()}"></p>
+    </div>
+
+</div>
+</body>
+</html>
