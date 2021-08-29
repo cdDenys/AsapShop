@@ -28,7 +28,15 @@ public class User {
 
     @Column(name = "userRole")
     private Role role = Role.USER;
+//
+//    @OneToOne
+//    private Cart cart;
 
-    @OneToOne
-    private Cart cart;
+
+    public User(String name, String surname, String login, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+    }
 }

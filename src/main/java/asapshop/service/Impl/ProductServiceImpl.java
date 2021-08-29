@@ -5,6 +5,8 @@ import asapshop.repository.ProductRepository;
 import asapshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -14,6 +16,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
+    @Transactional
     public void createProduct(Product product) {
         if (product != null) {
             productRepository.save(product);
@@ -21,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product getProductById(long productId) {
         Product product = new Product();
         if (productRepository.existsById(productId)) {
@@ -33,6 +37,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public boolean editProduct(Product product) {
         boolean isEdited = false;
         if (product != null && productRepository.existsById(product.getProductId())){
@@ -43,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public boolean deleteProduct(Product product) {
         boolean isDeleted = false;
         if (product != null && productRepository.existsById(product.getProductId())){
