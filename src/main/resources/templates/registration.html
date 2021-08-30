@@ -8,15 +8,37 @@
 
 <div th:insert="fragments/header :: header"></div>
 
-<div class="container mt-5 ">
-    <h1>Please sign up</h1>
-    <form action="registration" method="post">
-        <input type="text" name="name" placeholder="Enter your name" class="form-control">
-        <input type="text" name="surname" placeholder="Enter your surname" class="form-control">
-        <input type="text" name="login" placeholder="Enter your username" class="form-control">
-        <input type="text" name="password" placeholder="Enter your password" class="form-control">
-        <button type="submit" class="btn btn-success">Sing up</button>
-    </form>
+<div th:if="${param.success}">
+    <div class="mx-auto alert alert-info">You've successfully registered!</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Registration</h1>
+             <form th:action="@{/registration}" method="post" th:object="${user}">
+                    <div class="mx-auto form-group">
+                        <label class="control-label" for="name"> First Name </label>
+                        <input id="name" class="form-control" th:field="*{name}"
+                               required autofocus="autofocus"/>
+
+                        <label class="control-label" for="surname"> Last Name </label> <input
+                            id="surname" class="form-control" th:field="*{surname}"
+                            required autofocus="autofocus" />
+
+                        <label class="control-label" for="login"> Login </label> <input
+                            id="login" class="form-control" th:field="*{login}" required
+                            autofocus="autofocus" />
+
+                        <label class="control-label" for="password"> Password </label> <input
+                            id="password" class="form-control" type="password"
+                            th:field="*{password}" required autofocus="autofocus" />
+
+                        <button type="submit" class="mt-2 btn btn-success">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 </div>
 
 </body>

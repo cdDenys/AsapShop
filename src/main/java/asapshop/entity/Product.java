@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "product")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productId;
+    private Long id;
 
     @Column(name = "productName", nullable = false, unique = true)
     private String productName;

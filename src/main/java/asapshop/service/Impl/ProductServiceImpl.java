@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(long productId) {
         Product product = new Product();
         if (productRepository.existsById(productId)) {
-            product.setProductId(productRepository.findById(productId).get().getProductId());
+            product.setId(productRepository.findById(productId).get().getId());
             product.setProductName(productRepository.findById(productId).get().getProductName());
             product.setProductDescription(productRepository.findById(productId).get().getProductDescription());
             product.setProductPrice(productRepository.findById(productId).get().getProductPrice());
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public boolean editProduct(Product product) {
         boolean isEdited = false;
-        if (product != null && productRepository.existsById(product.getProductId())){
+        if (product != null && productRepository.existsById(product.getId())){
             productRepository.save(product);
             isEdited = true;
         }
@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public boolean deleteProduct(Product product) {
         boolean isDeleted = false;
-        if (product != null && productRepository.existsById(product.getProductId())){
+        if (product != null && productRepository.existsById(product.getId())){
             productRepository.delete(product);
             isDeleted = true;
         }

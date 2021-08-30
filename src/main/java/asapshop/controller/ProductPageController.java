@@ -30,11 +30,11 @@ public class ProductPageController {
     @PostMapping("/products-add")
     public String addProduct(@RequestParam String productName, @RequestParam String productDescription, @RequestParam BigDecimal productPrice){
         Product product = new Product(productName, productDescription, productPrice);
-        if(!productName.isEmpty() && !productDescription.isEmpty() && !productPrice.equals(BigDecimal.ZERO)){
+        if(productName.isEmpty() || productDescription.isEmpty() || productPrice.equals(BigDecimal.ZERO)){
+            return "redirect:/cant-add-product";
+        }else {
             productService.createProduct(product);
             return "redirect:/products-list";
-        }else {
-            return "redirect:/cant-add-product";
         }
     }
 

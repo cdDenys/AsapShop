@@ -1,18 +1,21 @@
 package asapshop.entity;
 
-
-import asapshop.enums.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
+@Table(name = "user")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -20,23 +23,31 @@ public class User {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", nullable = false, unique = true)
     private String login;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "userRole")
-    private Role role = Role.USER;
-//
-//    @OneToOne
-//    private Cart cart;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+
+    private Collection<Role> roles;
+
+    @OneToOne
+    private Cart cart;
 
 
-    public User(String name, String surname, String login, String password) {
+    public User(String name, String surname, String login, String password, Collection<Role> roles) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.roles = roles;
     }
 }

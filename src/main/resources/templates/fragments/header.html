@@ -3,8 +3,9 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">ASAP SHOP</h5>
         <nav class="mx-auto">
             <a class="btn btn-outline-secondary" href="/mainpage">Home page</a>
-            <a sec:authorize="hasRole('ADMIN')" class="btn btn-outline-secondary" href="/products">Create product</a>
+            <a sec:authorize="hasRole('USER')" class="btn btn-outline-secondary" href="/products">Create product</a>
             <a class="btn btn-outline-secondary" href="/products-list">Products list</a>
+            <a sec:authorize="isAuthenticated()" class="btn btn-outline-secondary" href="/profilepage">Profile</a>
             <a class="btn btn-outline-secondary" href="/loginpage">Log in</a>
             <a class="btn btn-outline-secondary" href="/registration">Sing up</a>
         </nav>
