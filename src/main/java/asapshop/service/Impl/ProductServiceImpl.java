@@ -28,10 +28,10 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(long productId) {
         Product product = new Product();
         if (productRepository.existsById(productId)) {
-            product.setId(productRepository.findById(productId).get().getId());
-            product.setProductName(productRepository.findById(productId).get().getProductName());
-            product.setProductDescription(productRepository.findById(productId).get().getProductDescription());
-            product.setProductPrice(productRepository.findById(productId).get().getProductPrice());
+            product.setId(productRepository.findById(productId).orElseThrow().getId());
+            product.setProductName(productRepository.findById(productId).orElseThrow().getProductName());
+            product.setProductDescription(productRepository.findById(productId).orElseThrow().getProductDescription());
+            product.setProductPrice(productRepository.findById(productId).orElseThrow().getProductPrice());
         }
         return product;
     }

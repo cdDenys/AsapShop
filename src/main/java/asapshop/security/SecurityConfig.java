@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     @Autowired
@@ -44,10 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
                 authorizeRequests().antMatchers(
+                "/",
                 "/registration",
                 "/loginpage",
                 "/products-list",
-                "/mainpage").permitAll()
+                "/mainpage",
+                "/profilepage").permitAll()
                 .antMatchers("/products-add").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
