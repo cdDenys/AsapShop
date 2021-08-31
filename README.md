@@ -1,5 +1,5 @@
 # AsapShop
-Small project for Hillel IT School
+Small project for Hillel IT School | 
 Spring Data
 Spring Security
 Spring Boot
