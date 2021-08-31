@@ -6,8 +6,9 @@
             <a sec:authorize="hasRole('USER')" class="btn btn-outline-secondary" href="/products">Create product</a>
             <a class="btn btn-outline-secondary" href="/products-list">Products list</a>
             <a sec:authorize="isAuthenticated()" class="btn btn-outline-secondary" href="/profilepage">Profile</a>
-            <a class="btn btn-outline-secondary" href="/loginpage">Log in</a>
-            <a class="btn btn-outline-secondary" href="/registration">Sing up</a>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-outline-success" href="/loginpage">Log in</a>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" href="/registration">Sing up</a>
+            <a sec:authorize="isAuthenticated()" class="btn btn-outline-danger" th:href="@{/logout}">Logout</a>
         </nav>
     </div>
 </div>

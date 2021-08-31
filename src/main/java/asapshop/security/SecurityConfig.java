@@ -49,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 "/products-list",
                 "/mainpage").permitAll()
                 .antMatchers("/products-add").hasRole("ADMIN")
-                .antMatchers("/profilepage").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

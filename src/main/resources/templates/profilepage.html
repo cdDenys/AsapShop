@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,15 +7,15 @@
 </head>
 
 <body>
-<div th:insert="fragments/header :: header"></div>
-<div class="container mt-5">
-    <h1>My profile</h1>
-    <div th:each="${profile}" class="alert alert-info mt-2">
-        <h3 th:text="${profile.getName()}"></h3>
-        <h3 th:text="${profile.getSurname()}"></h3>
-        <h3 th:text="${profile.getRoles()}"></h3>
-    </div>
 
-</div>
+<div th:insert="fragments/header :: header"></div>
+
+    <div class="container mt-5">
+        <h1>My profile</h1>
+        <div th:each="prof : ${profile}" class="alert alert-info mt-2">
+            <h3 th:text="${profile.getName()}"></h3>
+            <h3 th:text="${profile.getSurname()}"></h3>
+        </div>
+    </div>
 </body>
 </html>

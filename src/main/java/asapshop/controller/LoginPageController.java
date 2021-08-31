@@ -19,15 +19,17 @@ public class LoginPageController {
         return "loginpage";
     }
 
+    @GetMapping("/profilepage")
+    public String showUserProfile(Model model) {
+        model.addAttribute("profile", userService.getAuthorizedUser());
+        return "profilepage";
+    }
+
     @PostMapping("/loginpage")
     public String login(Model model) {
         model.addAttribute("loginpage", userService.getAuthorizedUser());
         return "redirect:profilepage";
     }
 
-    @GetMapping("/profilepage")
-    public String showUserProfile(Model model) {
-        model.addAttribute("profile", userService.getAuthorizedUser());
-        return "profilepage";
-    }
 }
+
